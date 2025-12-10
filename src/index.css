@@ -146,7 +146,6 @@ section h2.section-title {
 }
 
 section p {
-  max-width: 640px;
   line-height: 1.7;
   opacity: 0.88;
 }
@@ -629,7 +628,7 @@ section p {
 }
 
 .xp-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-1px);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   box-shadow: 0 26px 80px rgba(0,0,0,1);
   border-color: rgba(255,255,255,0.26);
