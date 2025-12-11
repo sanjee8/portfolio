@@ -1,8 +1,8 @@
 // src/components/sections/Skills.jsx
 import React, { useEffect, useState } from "react";
 import copy from "../../i18n/copy";
+import { API_URL } from "../../config/api";
 
-const API_URL = "http://localhost:1337/api";
 
 export default function Skills({ lang }) {
     const { skills: skillsCopy } = copy[lang];

@@ -4,17 +4,23 @@ export default function useScrollNavigation() {
     useEffect(() => {
         // ---------- ANIM FADE-IN DES SECTIONS ----------
         const animSections = document.querySelectorAll(".section-animate");
+
         const animObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    if (entry.intersectionRatio > 0.4) {
+                    // dès qu'une petite partie est visible, on affiche
+                    if (entry.isIntersecting) {
                         entry.target.classList.add("in-view");
                     }
                 });
             },
-            { threshold: [0.4] }
+            {
+                threshold: 0.1, // 10% de la section suffit
+            }
         );
+
         animSections.forEach((sec) => animObserver.observe(sec));
+
 
         // ---------- LOGIQUE DE SCROLL "HINT + RESCROLL" ----------
         const sections = Array.from(document.querySelectorAll("section"));

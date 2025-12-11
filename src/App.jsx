@@ -23,7 +23,7 @@ function App() {
             <Starfield />
             <ScrollProgress />
 
-            <Header lang={lang} onLangChange={setLang} />
+            <Header lang={lang} onChangeLang={setLang} />
 
             <main>
                 <Hero lang={lang} />

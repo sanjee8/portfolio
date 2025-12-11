@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import copy from "../../i18n/copy";
 import { formatDateToMonthYear } from "../../utils/date";
+import { API_URL } from "../../config/api";
 
-const API_URL = "http://localhost:1337/api";
 
 export default function Experience({ lang }) {
     const { experience } = copy[lang];
@@ -26,6 +26,7 @@ export default function Experience({ lang }) {
                 const json = await res.json();
                 const data = json.data || [];
 
+                // Tri : expériences en cours d'abord, puis plus récentes
                 const sorted = [...data].sort((a, b) => {
                     const aCurrent = !!a.isCurrent;
                     const bCurrent = !!b.isCurrent;
@@ -37,7 +38,6 @@ export default function Experience({ lang }) {
                     const aEnd = a.endDate || a.startDate || "";
                     const bEnd = b.endDate || b.startDate || "";
 
-                    // dates au format ISO -> comparaison string OK
                     if (aEnd < bEnd) return 1;
                     if (aEnd > bEnd) return -1;
                     return 0;
@@ -121,6 +121,38 @@ export default function Experience({ lang }) {
         );
     };
 
+    const buildDateLabel = (exp, currentLabel) => {
+        const isCurrent = !!exp.isCurrent;
+        const start = exp.startDate || null;
+        const end = exp.endDate || null;
+
+        if (!start && !end) return "";
+
+        try {
+            if (start && end) {
+                return `${formatDateToMonthYear(start)} – ${formatDateToMonthYear(end)}`;
+            }
+
+            if (start && isCurrent) {
+                return `${formatDateToMonthYear(start)} – ${currentLabel}`;
+            }
+
+            if (start && !end) {
+                // Pas de endDate, pas isCurrent -> on affiche juste la date de début
+                return formatDateToMonthYear(start);
+            }
+
+            if (!start && end) {
+                return formatDateToMonthYear(end);
+            }
+        } catch (e) {
+            console.error("Erreur formatage date pour expérience", exp.id, e);
+            return "";
+        }
+
+        return "";
+    };
+
     return (
         <section id="experience" className="section-animate">
             <div className="section-inner">
@@ -132,7 +164,9 @@ export default function Experience({ lang }) {
                     <div className="xp-cosmic-rail"></div>
 
                     {experiences.map((exp) => {
-                        const tags = exp.tags ?? [];
+                        if (!exp || typeof exp !== "object") return null;
+
+                        const tags = Array.isArray(exp.tags) ? exp.tags : [];
                         const currentLabel = experience.currentLabel;
                         const isCurrent = !!exp.isCurrent;
 
@@ -141,7 +175,11 @@ export default function Experience({ lang }) {
                                 ? "xp-type-formation"
                                 : exp.type === "benevolat"
                                     ? "xp-type-benevole"
-                                    : "xp-type-alt";
+                                    : exp.type === "projet"
+                                        ? "xp-type-projet"
+                                        : "xp-type-alt";
+
+
 
                         const title = t(exp, "title");
                         const summary = t(exp, "summary");
@@ -151,6 +189,8 @@ export default function Experience({ lang }) {
                             exp.bullets_fr ||
                             exp.bullets_en ||
                             exp.bullets;
+
+                        const dateLabel = buildDateLabel(exp, currentLabel);
 
                         return (
                             <article
@@ -165,17 +205,14 @@ export default function Experience({ lang }) {
                                     <div className="xp-card-inner">
                                         {/* Métadonnées */}
                                         <div className="xp-meta">
-                                            <span className="xp-meta-date">
-                                                {formatDateToMonthYear(exp.startDate)} –{" "}
-                                                {isCurrent
-                                                    ? currentLabel
-                                                    : formatDateToMonthYear(exp.endDate)}
-                                            </span>
+                                            {dateLabel && (
+                                                <span className="xp-meta-date">{dateLabel}</span>
+                                            )}
 
                                             {exp.type && (
                                                 <span className="xp-meta-type">
-                                                    {exp.type.toUpperCase()}
-                                                </span>
+                          {exp.type.toUpperCase()}
+                        </span>
                                             )}
 
                                             {exp.company && <span>· {exp.company}</span>}

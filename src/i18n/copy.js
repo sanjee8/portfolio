@@ -62,12 +62,26 @@ const copy = {
             sectionLabel: "Contact",
             title: "Discutons de votre besoin.",
             intro:
-                "Si vous cherchez un ingénieur capable de comprendre un contexte métier, d’améliorer un existant ou de développer des solutions fiables et maintenables, je serais ravi d’en discuter.",
+                "Si vous cherchez un développeur capable de comprendre vos enjeux métier, d’améliorer un existant parfois complexe ou de concevoir des outils solides et documentés, je serais ravi d’en parler.",
+
+            // Nouveau bloc CTA
+            ctaTitle: "Travaillons ensemble 🚀",
+            ctaSubtitle:
+                "Un appel, un mail ou un message LinkedIn suffit pour démarrer. Je peux vous aider à consolider un existant, lancer un nouveau projet ou simplement clarifier vos besoins techniques.",
+            ctaPrimary: "Discuter d’un projet",
+
+            // Labels des boutons
             mailLabel: "Mail",
             githubLabel: "GitHub",
+            buttonGithub: "Voir mon GitHub",
+            buttonCV: "Télécharger mon CV",
+            buttonLinkedIn: "Profil LinkedIn",
+            buttonEmail: "Écrire un email",
+
             prevLabel: "Revenir",
             prevName: "— Compétences",
         },
+
     },
 
     en: {
@@ -133,12 +147,24 @@ const copy = {
             sectionLabel: "Contact",
             title: "Let's talk.",
             intro:
-                "If you're looking for an engineer who can understand your business context, improve an existing system or build reliable, maintainable solutions, I'd be happy to connect.",
+                "If you're looking for someone who can understand your business needs, enhance an existing system or deliver clean, reliable software, I’d be happy to connect.",
+
+            ctaTitle: "Let’s work together 🚀",
+            ctaSubtitle:
+                "One email, call or LinkedIn message is enough to get started. I can help you stabilise an existing system, launch a new product or simply clarify technical options.",
+            ctaPrimary: "Start a conversation",
+
             mailLabel: "Email",
             githubLabel: "GitHub",
+            buttonGithub: "View my GitHub",
+            buttonCV: "Download my CV",
+            buttonLinkedIn: "LinkedIn profile",
+            buttonEmail: "Send an email",
+
             prevLabel: "Back",
             prevName: "— Skills",
         },
+
     },
 };
 
