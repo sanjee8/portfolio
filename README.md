@@ -1,4 +1,4 @@
-# 🚀 Sanjeevan Rammohan – Portfolio
+# 🚀 R Rammohan – Portfolio
 
 <p align="center">
   <b>Ingénieur Informatique · Full‑Stack · Software Engineer</b>
