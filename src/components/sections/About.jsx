@@ -25,7 +25,7 @@ export default function About({ lang }) {
                 <div className="about-photo">
                     <div className="about-photo-inner">
                     <img
-                            src="assets/profile-pro.jpg"
+                            src=""
                             alt="Portrait professionnel de Sanjeevan"
                         />
                     </div>

@@ -8,18 +8,19 @@ export default function useScrollNavigation() {
         const animObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    // dès qu'une petite partie est visible, on affiche
                     if (entry.isIntersecting) {
                         entry.target.classList.add("in-view");
                     }
                 });
             },
             {
-                threshold: 0.1, // 10% de la section suffit
+                threshold: 0.15,              // ✅ au lieu de 0.4
+                rootMargin: "0px 0px -10% 0px" // ✅ déclenche un peu plus tôt
             }
         );
 
         animSections.forEach((sec) => animObserver.observe(sec));
+
 
 
         // ---------- LOGIQUE DE SCROLL "HINT + RESCROLL" ----------

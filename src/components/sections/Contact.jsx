@@ -6,7 +6,7 @@ const PROFILE = {
     email: "rsanjee19@gmail.com",
     github: "https://github.com/sanjee8",
     linkedin: "https://www.linkedin.com/in/ramsanjeevan-rammohan/",
-    cvUrl: "/CV_Rammohan.pdf", // adapte le chemin si besoin
+    cvUrl: "/CV_Rammohan.pdf#view=FitH", // adapte le chemin si besoin
 };
 
 function CvModal({ cvUrl, onClose, lang }) {
